@@ -1,0 +1,41 @@
+{% load staticfiles %}
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Мои заметки</title>
+
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/ajax.js' %}"></script>
+	{{ form.media }}
+</head>
+<body class="bg-g">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-2 sidebar">
+				<div class="text-center">
+					<h1>My Notes</h1>
+					<h4>Добро пожаловать,</h4>
+					<h5>{{request.user.get_full_name}}</h5>
+					<button class="btn btn-primary">Добавить заметку</button><br><br>
+					<a href="{% url 'logout' %}" class="btn btn-primary">Выйти</a>
+				</div>
+			</div>
+			<div class="col-lg-10 content">
+				<p>Форма доавления и изменения заметки</p>
+				<div id="errors"></div>
+				<form method="POST" id="form">
+					{% csrf_token %}
+					{%bootstrap_form form%}
+					<button id="btn-save" type="button">Сохранить</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

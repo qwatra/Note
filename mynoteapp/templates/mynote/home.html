@@ -1,0 +1,82 @@
+{% load staticfiles %}
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Мои заметки</title>
+
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	
+	{{ edit_form.media }}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/ajax.js' %}"></script>
+</head>
+<body class="bg-t">
+	<div class="container-fluid">
+		<div class="row header">
+			<div class="col-lg-10">
+				<h1>My Notes</h1>
+			</div>
+			<div class="col-lg-2 user-nav">		
+				<a href="{% url 'logout' %}" class="btn btn-primary">Выйти</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-2">
+				<div class="text-center">
+					<button class="btn btn-primary text-center" id="btn-add">Добавить заметку</button><br><br>
+				</div>
+				<form class="filter-form">
+					{%bootstrap_form filter_form%}
+					<div class="text-center">
+						<button type="button" class="btn btn-secondary" id="btn-filter">Применить</button>
+					</div>
+				</form>
+			</div>
+			<div class="col-lg-10 content">
+				<div class="ordering">
+					<span>Сортировать:</span>
+					<form class="order-form">
+						<fieldset class="fields">
+							<input class="visually-hidden" type="radio" name="field" value="create_date" id="sort_date" checked>
+							<label for="sort_date">По дате создания</label>
+							<input class="visually-hidden" type="radio" name="field" value="category" id="sort_category">
+							<label for="sort_category">По категории</label>
+							<input class="visually-hidden" type="radio" name="field" value="favorites" id="sort_favorite">
+							<label for="sort_favorite">По "избранности"</label>
+						</fieldset>
+						<fieldset class="by">
+							<input class="visually-hidden" type="radio" name="orderby" value="desc" id="sort_desc" checked>
+							<label for="sort_desc"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="10" viewBox="0 0 11 10"><path fill="#231F20" d="M5.5 10L0 0h11"/></svg></label>
+							<input class="visually-hidden" type="radio" name="orderby" value="asc" id="sort_asc">
+							<label for="sort_asc"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="10" viewBox="0 0 11 10"><path fill="#231F20" d="M5.5 0L0 10h11z"/></svg></label>
+						</fieldset>
+					</form>
+				</div>
+				<div class="flex_container">
+					{%for note in notes %}
+					<div class="note {{note.favorite}}" id="{{note.id}}">
+						<h4>{{note.head}}</h4>
+						<p>{{note.body}}</p>
+						<button class="btn-del" title="Удалить"><span>х</span></button>
+						<button class="btn-fvr" title="Избранная"></button>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="layer"></div>
+	<div class="edit_forms">
+		<form method="POST" id="form">
+			{% csrf_token %}
+			{%bootstrap_form edit_form%}
+			<button id="btn-save" type="button">Сохранить</button>
+			<button id="btn-cancel" type="button">Отмена</button>
+		</form>
+	</div>
+</body>
+</html>

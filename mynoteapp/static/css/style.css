@@ -1,0 +1,188 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+.bg-b {
+	background-color: #417690;
+}
+
+.bg-g {
+	background-color: #e8e8e8;
+}
+
+.header {
+	padding: 10px;
+	background-color: #417690;
+	margin-bottom: 10px;
+}
+
+.header h1 {
+	color: white;
+}
+
+.user-nav {
+	margin: auto;
+	text-align: center;
+}
+
+.flex_container {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-wrap: wrap;
+}
+
+.note {
+	width: 200px;
+	min-height: 200px;
+	padding: 10px;
+	background: white;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
+	margin: 20px;
+	position: relative;
+	cursor: pointer;
+}
+
+.note:hover {
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.edit_forms {
+	position: absolute;
+	top: 10%;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%, -10%);
+	width: 500px;
+	background-color: white;
+    padding: 20px;
+    display: none;
+}
+
+#layer {
+    position: absolute;
+    display: none;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+    z-index: 1;
+}
+
+.btn-del {
+	width: 20px;
+	height: 20px;
+	background-color: rgba(0,0,0,.7);
+	position: absolute;
+	top:0;
+	right:0;
+	border: 0;
+	border-radius:10px;
+	cursor: pointer;
+}
+
+.btn-del span {
+	display: block;
+	margin-top: -2px;
+	line-height: 0;
+	color: white;
+}
+
+.btn-fvr {
+	width: 20px;
+	height: 20px;
+	background-image: url(/static/img/ok.svg);
+	background-size: 100%;
+	background-color:white;
+	border: 0;
+	border-radius:10px;
+	position: absolute;
+	top:-10px;
+	left:-10px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14);
+	cursor: pointer;
+	display: none;
+}
+
+.favorite {
+	border: 3px solid #6f6f6f;
+}
+
+.favorite .btn-fvr {
+	filter: invert(100%);
+	background-color:#6f6f6f;
+	display: block;
+}
+
+.note:hover .btn-fvr {
+   display: block;
+}
+
+.mceLayout{
+	width: 100% !important;
+}
+
+.ordering {
+	display: flex;
+	justify-content: space-between;
+}
+
+.ordering span {
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.order-form {
+	text-transform: uppercase;
+}
+
+.order-form fieldset {
+	display: inline-block;
+}
+
+.order-form label{
+	color: #a6a6a6;
+	cursor: pointer;
+}
+
+fieldset.fields {
+	margin-right: 50px;
+}
+
+fieldset.fields label {
+	margin-left: 25px;
+}
+
+fieldset.by label {
+	margin-left: 15px;
+}
+
+.order-form input:checked+label{
+	color: black;
+}
+
+svg path {
+	fill: #a6a6a6;
+}
+
+.order-form input:checked+label svg path{
+	fill: #231F20;
+}
+
+input[type="radio"].visually-hidden {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+
+  white-space: nowrap;
+
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
